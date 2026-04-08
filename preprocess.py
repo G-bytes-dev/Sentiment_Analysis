@@ -11,7 +11,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-stop_words = set(stopwords.words('english'))
+stop_words = set(stopwords.words('English'))
 lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
