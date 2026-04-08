@@ -1,17 +1,16 @@
 import re
 import nltk
 
-# nltk.download("stopwords") # Common English words to remove
-# nltk.download("wordnet") # Vocabulary for lemmatization
-# nltk.download("vader_lexicon")  # VADER Sentiment Dictionary
-# nltk.download("punkt") # Tokenizer Rules
-# nltk.download("punkt_tab")
+# Download required datasets
+nltk.download("stopwords")
+nltk.download("wordnet")
+nltk.download("punkt")
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-stop_words = set(stopwords.words('English'))
+stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
