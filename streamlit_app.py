@@ -22,7 +22,7 @@ if st.button("Analysis Sentiment"):
         with st.spinner("Analyzing..."):
             # Call your Flask backend
             response = requests.post(
-                "https://sentiment-analysis-88p7.onrender.com",
+                "https://sentiment-analysis-88p7.onrender.com/predict",
                 json={"reviews": review}
             )
             result = response.json()
