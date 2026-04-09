@@ -13,9 +13,17 @@ vectorizer = joblib.load('tf_idf.joblib')
 
 
 # HOME ROUTE (Fix for 404)
-@app.route("/")
+@app.route('/', methods=['GET'])
 def home():
-    return "Sentiment Analysis API is running 🚀"
+    return jsonify({
+        'message': 'Sentiment Analysis API is running!',
+        'endpoints': {
+            'health': 'GET /health',
+            'predict': 'POST /predict'
+        }
+    })
+#def home():
+    #return "Sentiment Analysis API is running 🚀"
 
 
 @app.route("/predict", methods=['POST'])
