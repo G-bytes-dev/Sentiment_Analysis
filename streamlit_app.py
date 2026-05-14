@@ -36,11 +36,14 @@ if st.button("Analysis Sentiment"):
         st.write(f"🔍 DEBUG - Type: {type(sentiment)}")
         st.write(f"🔍 DEBUG - Lowercase: '{str(sentiment).lower()}'")
 
-        if "pos" in str(sentiment).lower():
-            st.success(f"Sentiment : {sentiment}")
-        elif "neg" in str(sentiment).lower():
-            st.error(f"Sentiment : {sentiment}")
+        sentiment_lower = str(sentiment).lower()
+        
+        # Fixed: Check for "positive" or "pos" only if it's the main sentiment
+        if "positive" in sentiment_lower or sentiment_lower == "pos":
+            st.success(f"✅ Sentiment : {sentiment}")
+        elif "negative" in sentiment_lower or sentiment_lower == "neg":
+            st.error(f"❌ Sentiment : {sentiment}")
         else:
-            st.info(f"Sentiment : {sentiment}")
+            st.info(f"ℹ️ Sentiment : {sentiment}")
 
         # st.metric(Label="Confidence", value=confidence)
