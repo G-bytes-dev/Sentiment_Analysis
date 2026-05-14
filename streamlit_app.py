@@ -53,7 +53,7 @@ if st.button("Analyze Sentiment", type="primary"):
                     sentiment = str(result["prediction"]).lower().strip()
                     confidence = result.get("confidence", "N/A")
                     
-                    # Determine sentiment type
+                    # Determine sentiment type - normalize different prediction formats
                     if sentiment in ["positive", "pos"]:
                         st.success(f"✅ **Sentiment:** Positive")
                         st.balloons()
@@ -73,9 +73,9 @@ if st.button("Analyze Sentiment", type="primary"):
                         st.text(review_stripped)
                         
             except requests.exceptions.Timeout:
-                st.error("❌ Request timeout. The API is taking too long to respond.\n\n**Tips:**\n- If using Render free tier, the API may need to wake up (first request takes ~30-60 seconds)\n- Try again in a moment\n- Consider upgrading to a paid plan for faster response times")
+                st.error("❌ Request timeout. The API is taking too long to respond.\n\n**Tips:**\n- If using Render free tier, the API may need to wake up (first request takes ~30-60 seconds)\n- Try again in a moment")
             except requests.exceptions.ConnectionError:
-                st.error("❌ Connection error. Unable to reach the API.\n\n**Check:**\n- Is your API running? Visit: https://sentiment-analysis-88p7.onrender.com/predict\n- Check your internet connection")
+                st.error("❌ Connection error. Unable to reach the API.\n\n**Check:**\n- Is your API running?\n- Check your internet connection")
             except requests.exceptions.HTTPError as e:
                 st.error(f"❌ API error: {e.response.status_code} - {e.response.reason}")
             except requests.exceptions.RequestException as e:
