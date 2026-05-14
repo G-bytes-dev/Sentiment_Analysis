@@ -8,7 +8,7 @@ load_dotenv()
 
 # Constants
 API_URL = os.getenv("API_URL", "https://sentiment-analysis-88p7.onrender.com/predict")
-API_TIMEOUT = 10
+API_TIMEOUT = 30  # Increased from 10 to 30 seconds for Render free tier
 MAX_REVIEW_LENGTH = 5000
 
 # Page config
@@ -34,7 +34,7 @@ if st.button("Analyze Sentiment", type="primary"):
     elif len(review_stripped) > MAX_REVIEW_LENGTH:
         st.error(f"❌ Review exceeds maximum length of {MAX_REVIEW_LENGTH} characters!")
     else:
-        with st.spinner("🔄 Analyzing your review..."):
+        with st.spinner("🔄 Analyzing your review... (This may take a moment)"):
             try:
                 # Call Flask backend
                 response = requests.post(
@@ -73,9 +73,9 @@ if st.button("Analyze Sentiment", type="primary"):
                         st.text(review_stripped)
                         
             except requests.exceptions.Timeout:
-                st.error("❌ Request timeout. The API took too long to respond. Please try again.")
+                st.error("❌ Request timeout. The API is taking too long to respond.\n\n**Tips:**\n- If using Render free tier, the API may need to wake up (first request takes ~30-60 seconds)\n- Try again in a moment\n- Consider upgrading to a paid plan for faster response times")
             except requests.exceptions.ConnectionError:
-                st.error("❌ Connection error. Unable to reach the API. Please check your internet connection.")
+                st.error("❌ Connection error. Unable to reach the API.\n\n**Check:**\n- Is your API running? Visit: https://sentiment-analysis-88p7.onrender.com/predict\n- Check your internet connection")
             except requests.exceptions.HTTPError as e:
                 st.error(f"❌ API error: {e.response.status_code} - {e.response.reason}")
             except requests.exceptions.RequestException as e:
