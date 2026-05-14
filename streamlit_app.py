@@ -30,10 +30,15 @@ if st.button("Analysis Sentiment"):
         # Display result
         sentiment = result['prediction']
         # confidence = result['confidence']
+        
+        # DEBUG INFO - Remove after testing
+        st.write(f"🔍 DEBUG - Raw value: '{sentiment}'")
+        st.write(f"🔍 DEBUG - Type: {type(sentiment)}")
+        st.write(f"🔍 DEBUG - Lowercase: '{str(sentiment).lower()}'")
 
-        if "pos" in sentiment.lower():
+        if "pos" in str(sentiment).lower():
             st.success(f"Sentiment : {sentiment}")
-        elif "neg" in sentiment.lower():
+        elif "neg" in str(sentiment).lower():
             st.error(f"Sentiment : {sentiment}")
         else:
             st.info(f"Sentiment : {sentiment}")
