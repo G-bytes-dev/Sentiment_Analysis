@@ -16,7 +16,7 @@ review = st.text_area("Enter your movie review here:", height=150)
 
 # Predict button
 if st.button("Analysis Sentiment"):
-    if review.strip()== "":
+    if review.strip() == "":
         st.warning("Please enter a review first!")
     else:
         with st.spinner("Analyzing..."):
@@ -32,10 +32,10 @@ if st.button("Analysis Sentiment"):
         # confidence = result['confidence']
 
         if "pos" in sentiment.lower():
-    st.success(f"Sentiment : {sentiment}")
-elif "neg" in sentiment.lower():
-    st.error(f"Sentiment : {sentiment}")
-else:
-    st.info(f"Sentiment : {sentiment}")
+            st.success(f"Sentiment : {sentiment}")
+        elif "neg" in sentiment.lower():
+            st.error(f"Sentiment : {sentiment}")
+        else:
+            st.info(f"Sentiment : {sentiment}")
 
         # st.metric(Label="Confidence", value=confidence)
